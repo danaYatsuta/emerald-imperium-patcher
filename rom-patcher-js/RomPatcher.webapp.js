@@ -1426,10 +1426,12 @@ const ZIPManager = (function (romPatcherWeb) {
 								throw new Error('No valid non-optional patches found in ZIP');
 							}
 
+							selectablePatches.reverse()
+
 							if (embededPatchesInfo.length && embededPatchesInfo.length === 1 && selectablePatches.length === 1)
 								embededPatchesInfo[0].file = selectablePatches[0].filename;
 
-							for (var i = selectablePatches.length - 1; i >= 0; i--) {
+							for (var i = 0; i < selectablePatches.length; i++) {
 								const embededPatchInfo = embededPatchesInfo.find((embededPatchInfo) => embededPatchInfo.file === selectablePatches[i].filename);
 								const option = document.createElement('option');
 								option.innerHTML = embededPatchInfo && embededPatchInfo.name ? embededPatchInfo.name : selectablePatches[i].filename;
